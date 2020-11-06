@@ -15,7 +15,7 @@ app.use(express.json());
 
 app.get("/savantData", async (request, response) => {
   try {
-    const allSavantData = await pool.query("SELECT * FROM savantData WHERE sl_avg_spin IS NOT NULL ORDER BY sl_avg_spin DESC limit 20");
+    const allSavantData = await pool.query("SELECT * FROM savantData where fastball_avg_spin IS NOT NULL order by fastball_avg_spin DESC limit 10");
     response.json(allSavantData.rows);
     console.log(allSavantData.rows);
   } catch (err) {
@@ -39,16 +39,3 @@ app.listen(5000, () => {
   console.log("server has started on port 5000");
 });
 
-
-// Kershaw pitcher name filter
-// https://www.mlb.com/video/search?utm=club-film-room&q=Player+%3D+%5B%22Clayton+Kershaw%22%5D+Order+By+Timestamp+DESC
-// Kershaw and Bauer name filter
-// https://www.mlb.com/video/search?utm=club-film-room&q=Player+%3D+%5B%22Clayton+Kershaw%22%2C%22Trevor+Bauer%22%5D+Order+By+Timestamp+DESC
-// Kershaw and Bauer name filter, then pitch result = called strike filter
-// https://www.mlb.com/video/search?utm=club-film-room&q=Player+%3D+%5B%22Clayton+Kershaw%22%2C%22Trevor+Bauer%22%5D+AND+PitchResult+%3D+%5B%22called_strike%22%5D+Order+By+Timestamp+DESC
-// pitch type = 4 seam fastball filter
-// https://www.mlb.com/video/search?q=PitchType+%3D+%5B%22FF%22%5D+Order+By+Timestamp+DESC
-// pitch type = 4 seam fastball filter and Kershaw pitcher name filter
-// https://www.mlb.com/video/search?q=PitchType+%3D+%5B%22FF%22%5D+AND+Player+%3D+%5B%22Clayton+Kershaw%22%5D+Order+By+Timestamp+DESC
-
- 

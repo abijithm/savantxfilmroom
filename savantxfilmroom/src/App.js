@@ -1,20 +1,19 @@
 //import logo from './logo.svg';
-import React, {Component} from 'react'
+import React, {Component, Fragment} from 'react'
 import './App.css';
 
+import ListData from "./components/listData.js"
+
 class App extends Component {
-  constructor() {
-    this.state = {
-      title: 'Savant x Film Room'
-    }    
-  }
   render() {
     return (
-    <div className="App">
-      <h1> Hello from Savant x MLB Film Room</h1>
-    </div>
-  );
-    }
+      <Fragment>
+        <div className="container">
+          <ListData></ListData>
+        </div>
+      </Fragment>
+    );
+  }
 }
 
 export default App;
